@@ -12,6 +12,10 @@
 #include "GUILabel.h"
 #include "Explosion.h"
 
+//local variable to temproarily store score
+int highScore = 0;
+
+
 //declares if the game is true or false
 bool gameStatus = false;
 
@@ -76,6 +80,18 @@ void Asteroids::Start()
 	// Add this class as a listener of the player
 	mPlayer.AddListener(thisPtr);
 
+	std::ifstream inputFile("highscore.txt");
+	if (inputFile.is_open()) {
+		inputFile >> highScore;
+		inputFile.close();
+
+		// Update the high score label with the value from the file
+		std::ostringstream highScoreStream;
+		highScoreStream << "High Score: " << highScore;
+		std::string highScoreText = highScoreStream.str();
+		mHScoreLabel->SetText(highScoreText);
+	}
+
 	// Start the game
 	GameSession::Start();
 }
@@ -133,7 +149,6 @@ void Asteroids::OnKeyPressed(uchar key, int x, int y)
 
 void Asteroids::OnScoreChanged(int score)
 {
-
 	// Format the score message using an string-based stream
 	std::ostringstream msg_stream;
 	msg_stream << "Score: " << score;
@@ -215,7 +230,7 @@ void Asteroids::OnTimer(int value)
 
 	if (value == SHOW_GAME_OVER)
 	{
-		mScoreLabel->SetVisible(false);
+		mScoreLabel->SetVisible(true);
 		mHScoreLabel->SetVisible(false);
 		mLivesLabel->SetVisible(false);
 		mTitleLabel->SetVisible(false);
