@@ -14,7 +14,6 @@
 
 //declares if the game is true or false
 bool gameStatus = false;
-int highestScore;
 
 //storing temp if rules are displayed or not
 bool mRulesLabelVisible = false;
@@ -98,11 +97,12 @@ void Asteroids::OnKeyPressed(uchar key, int x, int y)
 	else if (key == '\t' && !gameStatus)
 	{
 		mScoreLabel->SetVisible(true);
+		mHScoreLabel->SetVisible(true);
 		mLivesLabel->SetVisible(true);
 		mTitleLabel->SetVisible(false);
 		mStartLabel->SetVisible(false);
 		mIntroLabel->SetVisible(false);
-		mHScoreLabel->SetVisible(true);
+		
 
 		mGameWorld->AddObject(CreateSpaceship());
 		CreateAsteroids(5);
@@ -133,6 +133,7 @@ void Asteroids::OnKeyPressed(uchar key, int x, int y)
 
 void Asteroids::OnScoreChanged(int score)
 {
+
 	// Format the score message using an string-based stream
 	std::ostringstream msg_stream;
 	msg_stream << "Score: " << score;
@@ -141,19 +142,6 @@ void Asteroids::OnScoreChanged(int score)
 	std::string score_msg = msg_stream.str();
 	mScoreLabel->SetText(score_msg);
 
-
-	//write the highest score
-	if (score > highestScore)
-	{
-		std::string high_score_msg = "High Score: " + std::to_string(score);
-		mHScoreLabel->SetText(high_score_msg);
-
-		std::fstream file("hscores.txt", std::ios::out | std::ios::trunc);
-		file << score;
-		file.close();
-
-		highestScore = score;
-	}
 }
 
 
@@ -228,11 +216,11 @@ void Asteroids::OnTimer(int value)
 	if (value == SHOW_GAME_OVER)
 	{
 		mScoreLabel->SetVisible(false);
+		mHScoreLabel->SetVisible(false);
 		mLivesLabel->SetVisible(false);
 		mTitleLabel->SetVisible(false);
 		mStartLabel->SetVisible(false);
 		mIntroLabel->SetVisible(false);
-		mHScoreLabel->SetVisible(false);
 		mGameOverLabel->SetVisible(true);
 
 	}
@@ -341,6 +329,9 @@ void Asteroids::CreateGUI()
 	mGameDisplay->GetContainer()->AddComponent(score_component, GLVector2f(0.0f, 1.0f));
 
 
+	////////////////////////
+	//HIGH SCORE CORE COUNTER///////////
+	// //////////////////
 	// Create a new GUILabel and wrap it up in a shared_ptr
 	mHScoreLabel = shared_ptr<GUILabel>(new GUILabel("High Score: 0"));
 	// Set the vertical alignment of the label to GUI_VALIGN_MIDDLE
