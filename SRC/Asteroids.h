@@ -17,7 +17,7 @@ class GUILabel;
 class Asteroids : public GameSession, public IKeyboardListener, public IGameWorldListener, public IScoreListener, public IPlayerListener
 {
 public:
-	Asteroids(int argc, char *argv[]);
+	Asteroids(int argc, char* argv[]);
 	virtual ~Asteroids(void);
 
 	virtual void Start(void);
@@ -52,6 +52,14 @@ private:
 	shared_ptr<GUILabel> mScoreLabel;
 	shared_ptr<GUILabel> mLivesLabel;
 	shared_ptr<GUILabel> mGameOverLabel;
+	//title stuff
+	shared_ptr<GUILabel> mTitleLabel;
+	shared_ptr<GUILabel> mIntroLabel;
+	shared_ptr<GUILabel> mStartLabel;
+	//high score stuff
+	shared_ptr<GUILabel> mHScoreLabel;
+
+	shared_ptr<GUILabel> mRulesLabel;
 
 	uint mLevel;
 	uint mAsteroidCount;
@@ -61,7 +69,7 @@ private:
 	void CreateGUI();
 	void CreateAsteroids(const uint num_asteroids);
 	shared_ptr<GameObject> CreateExplosion();
-	
+
 	const static uint SHOW_GAME_OVER = 0;
 	const static uint START_NEXT_LEVEL = 1;
 	const static uint CREATE_NEW_PLAYER = 2;
