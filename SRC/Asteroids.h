@@ -48,17 +48,15 @@ public:
 	void OnTimer(int value);
 
 private:
+
 	shared_ptr<Spaceship> mSpaceship;
 	shared_ptr<GUILabel> mScoreLabel;
 	shared_ptr<GUILabel> mLivesLabel;
 	shared_ptr<GUILabel> mGameOverLabel;
-	//title stuff
 	shared_ptr<GUILabel> mTitleLabel;
 	shared_ptr<GUILabel> mIntroLabel;
 	shared_ptr<GUILabel> mStartLabel;
-	//high score stuff
 	shared_ptr<GUILabel> mHScoreLabel;
-
 	shared_ptr<GUILabel> mRulesLabel;
 
 	uint mLevel;

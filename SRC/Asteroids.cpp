@@ -69,13 +69,13 @@ void Asteroids::Start()
 	Animation* asteroid1_anim = AnimationManager::GetInstance().CreateAnimationFromFile("asteroid1", 128, 8192, 128, 128, "asteroid1_fs.png");
 	Animation* spaceship_anim = AnimationManager::GetInstance().CreateAnimationFromFile("spaceship", 128, 128, 128, 128, "spaceship_fs.png");
 
-	// Create a spaceship and add it to the world
 
 	//Create the GUI
 	CreateGUI();
 
 	// Add a player (watcher) to the game world
 	mGameWorld->AddListener(&mPlayer);
+
 
 	// Add this class as a listener of the player
 	mPlayer.AddListener(thisPtr);
@@ -209,6 +209,7 @@ void Asteroids::OnObjectRemoved(GameWorld* world, shared_ptr<GameObject> object)
 			SetTimer(500, START_NEXT_LEVEL);
 		}
 	}
+
 }
 
 // PUBLIC INSTANCE METHODS IMPLEMENTING ITimerListener ////////////////////////
@@ -239,7 +240,6 @@ void Asteroids::OnTimer(int value)
 		mGameOverLabel->SetVisible(true);
 
 	}
-
 }
 
 // PROTECTED INSTANCE METHODS /////////////////////////////////////////////////
@@ -291,7 +291,7 @@ void Asteroids::CreateGUI()
 
 
 	// Create a new GUILabel and wrap it up in a shared_ptr
-	mTitleLabel = shared_ptr<GUILabel>(new GUILabel("------->> ASTEROIDS GAME <<------- "));
+	mTitleLabel = shared_ptr<GUILabel>(new GUILabel("ASTEROIDS GAME"));
 	// Set the horizontal alignment of the label to GUI_HALIGN_CENTER
 	mTitleLabel->SetHorizontalAlignment(GUIComponent::GUI_HALIGN_CENTER);
 	// Set the vertical alignment of the label to GUI_VALIGN_MIDDLE
@@ -305,7 +305,7 @@ void Asteroids::CreateGUI()
 
 
 	// Create a new GUILabel and wrap it up in a shared_ptr
-	mStartLabel = shared_ptr<GUILabel>(new GUILabel("Press the 'TAB' to start."));
+	mStartLabel = shared_ptr<GUILabel>(new GUILabel("Press the 'TAB' key to start."));
 	// Set the horizontal alignment of the label to GUI_HALIGN_CENTER
 	mStartLabel->SetHorizontalAlignment(GUIComponent::GUI_HALIGN_CENTER);
 	// Set the vertical alignment of the label to GUI_VALIGN_MIDDLE
@@ -348,7 +348,7 @@ void Asteroids::CreateGUI()
 	//HIGH SCORE CORE COUNTER///////////
 	// //////////////////
 	// Create a new GUILabel and wrap it up in a shared_ptr
-	mHScoreLabel = shared_ptr<GUILabel>(new GUILabel("High Score: 0"));
+	mHScoreLabel = shared_ptr<GUILabel>(new GUILabel("High Score: Loading.."));
 	// Set the vertical alignment of the label to GUI_VALIGN_MIDDLE
 	mHScoreLabel->SetVerticalAlignment(GUIComponent::GUI_VALIGN_TOP);
 	// Set the visibility of the label to true (visible)
