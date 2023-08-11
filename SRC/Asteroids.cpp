@@ -12,6 +12,8 @@
 #include "GUILabel.h"
 #include "Explosion.h"
 
+
+
 //local variable to temproarily store score
 int highScore = 0;
 
@@ -137,12 +139,16 @@ void Asteroids::OnKeyPressed(uchar key, int x, int y)
 			mTitleLabel->SetVisible(true);
 			mIntroLabel->SetVisible(true);
 			mStartLabel->SetVisible(true);
+
+			//mGameWorld->AddObject(CreateAISpaceship());
+			//CreateAsteroids(5);
 		}
 		else
 		{
 			mTitleLabel->SetVisible(false);
 			mIntroLabel->SetVisible(false);
 			mStartLabel->SetVisible(false);
+
 		}
 	}
 }
@@ -263,6 +269,25 @@ shared_ptr<GameObject> Asteroids::CreateSpaceship()
 
 }
 
+//shared_ptr<GameObject> Asteroids::CreateAISpaceship()
+//{
+	// Create a raw pointer to a spaceship that can be converted to
+	// shared_ptrs of different types because GameWorld implements IRefCount
+	//mAISpaceship = make_shared<AISpaceship>();
+	//->SetBoundingShape(make_shared<BoundingSphere>(mAISpaceship->GetThisPtr(), 4.0f));
+	//shared_ptr<Shape> AIBullet_shape = make_shared<Shape>("bullet.shape");
+	//mAISpaceship->SetAIBulletShape(AIBullet_shape);
+	//Animation* anim_ptr = AnimationManager::GetInstance().GetAnimationByName("spaceship");
+	//shared_ptr<Sprite> spaceship_sprite =
+	//	make_shared<Sprite>(anim_ptr->GetWidth(), anim_ptr->GetHeight(), anim_ptr);
+	//mAISpaceship->SetSprite(spaceship_sprite);
+	//mAISpaceship->SetScale(0.1f);
+	// Reset spaceship back to centre of the world
+	//mAISpaceship->Reset();
+	// Return the spaceship so it can be added to the world
+	//return mAISpaceship;
+
+//} 
 void Asteroids::CreateAsteroids(const uint num_asteroids)
 {
 	mAsteroidCount = num_asteroids;

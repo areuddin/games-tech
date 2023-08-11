@@ -13,6 +13,7 @@
 class GameObject;
 class Spaceship;
 class GUILabel;
+//class AISpaceship;
 
 class Asteroids : public GameSession, public IKeyboardListener, public IGameWorldListener, public IScoreListener, public IPlayerListener
 {
@@ -50,6 +51,7 @@ public:
 private:
 
 	shared_ptr<Spaceship> mSpaceship;
+	//shared_ptr<AISpaceship> mAISpaceship;
 	shared_ptr<GUILabel> mScoreLabel;
 	shared_ptr<GUILabel> mLivesLabel;
 	shared_ptr<GUILabel> mGameOverLabel;
@@ -64,6 +66,7 @@ private:
 
 	void ResetSpaceship();
 	shared_ptr<GameObject> CreateSpaceship();
+	//shared_ptr<GameObject> CreateAISpaceship();
 	void CreateGUI();
 	void CreateAsteroids(const uint num_asteroids);
 	shared_ptr<GameObject> CreateExplosion();
